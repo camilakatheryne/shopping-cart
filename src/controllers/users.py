@@ -9,13 +9,14 @@ from src.server.database import connect_db, db, disconnect_db
 
 
 async def users_crud():
-    option = input("Entre com a opção de CRUD: ")
+    option = input("Entre com a opção de CRUD de Usuários: \n1 - Create \n2 - Read  \n3 - Update \n4 - Delete \n5 - Get all items\n")
     
     await connect_db()
     users_collection = db.users_collection
 
     user =  {
         "email": "lu_domagalu@gmail.com",
+        "name": "Lu do Magalu",
         "password": "213sd312re3",
         "is_active": True,
         "is_admin": False

@@ -4,6 +4,7 @@ from pydantic.networks import EmailStr
 
 class UserSchema(BaseModel):
     email: EmailStr = Field(unique=True, index=True)
+    name: str
     password: str
     is_active: bool = Field(default=True)
     is_admin: bool = Field(default=False)
