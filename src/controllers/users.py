@@ -1,3 +1,5 @@
+from pprint import PrettyPrinter
+
 from src.models.user import (
     create_user,
     get_user_by_email,
@@ -7,6 +9,7 @@ from src.models.user import (
 )
 from src.server.database import connect_db, db, disconnect_db
 
+printer = PrettyPrinter()
 
 async def users_crud():
     option = input("Entre com a opção de CRUD de Usuários: \n1 - Create \n2 - Read  \n3 - Update \n4 - Delete \n5 - Get all items\n")
@@ -28,7 +31,7 @@ async def users_crud():
             users_collection,
             user
         )
-        print(user)
+        printer.pprint(user)
     elif option == '2':
         # get user
         user = await get_user_by_email(

@@ -1,4 +1,3 @@
-
 async def create_user(users_collection, user):
     try:
         user = await users_collection.insert_one(user)
@@ -56,3 +55,18 @@ async def delete_user(users_collection, user_id):
             return {'status': 'User deleted'}
     except Exception as e:
         print(f'delete_user.error: {e}')
+
+async def add_address_to_user(users_collection, user_id, address_id):
+    try:
+        user = await users_collection.update_one(
+            {'_id': user_id},
+            {'$addToSet': {"addresses": address_id}}
+        )
+        
+        if user.modified_count:
+            return True, user
+
+        return False, None
+        
+    except Exception as e:
+         print(f'add_address_to_user.error: {e}')
